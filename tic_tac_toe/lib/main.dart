@@ -19,7 +19,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var text = ['images/empty.png',
+
+
+  // gameState is the current state of the game
+  var gameState = ['images/empty.png',
               'images/empty.png',
               'images/empty.png',
               'images/empty.png',
@@ -28,7 +31,14 @@ class _HomePageState extends State<HomePage> {
               'images/empty.png',
               'images/empty.png',
               'images/empty.png'];
+
+  // to toggle b/w X & O
   var i = 0;
+
+  //stores the result of the game
+  var result = "";
+
+  // to change the color after the result is obtained
   var color1 = [Colors.white,
                 Colors.white,
                 Colors.white,
@@ -39,8 +49,10 @@ class _HomePageState extends State<HomePage> {
                 Colors.white,
                 Colors.white];
 
+
+  // to reset the game to initial condition after the game finishes
   reset(){
-    text = ['images/empty.png',
+    gameState = ['images/empty.png',
               'images/empty.png',
               'images/empty.png',
               'images/empty.png',
@@ -61,23 +73,24 @@ class _HomePageState extends State<HomePage> {
                 Colors.white];
     result = "";
   }
-  var result = "";
 
+  // to decide who wins
   winner(int index){
     if(index==9){
       result = "Draw!!!";
     }
-    else if (text[index]=='images/x.png') {
+    else if (gameState[index]=='images/x.png') {
           result = "X Wins!!";
         } else {
           result = "O wins!!";
         }
   }
 
+  // to check if the game is finished
   checkWin() {
-    if ((text[0] != 'images/empty.png') &&
-        (text[0] == text[1]) &&
-        (text[1] == text[2])) {
+    if ((gameState[0] != 'images/empty.png') &&
+        (gameState[0] == gameState[1]) &&
+        (gameState[1] == gameState[2])) {
       setState(() {
         color1[0]= Colors.teal;
         color1[1]= Colors.teal;
@@ -91,9 +104,9 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if ((text[3] != 'images/empty.png') &&
-        (text[3] == text[4]) &&
-        (text[4] == text[5])) {
+    } else if ((gameState[3] != 'images/empty.png') &&
+        (gameState[3] == gameState[4]) &&
+        (gameState[4] == gameState[5])) {
       setState(() {
         color1[3]= Colors.teal;
         color1[4]= Colors.teal;
@@ -106,9 +119,9 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if ((text[6] != 'images/empty.png') &&
-        (text[6] == text[7]) &&
-        (text[7] == text[8])) {
+    } else if ((gameState[6] != 'images/empty.png') &&
+        (gameState[6] == gameState[7]) &&
+        (gameState[7] == gameState[8])) {
       setState(() {
       color1[6]= Colors.teal;
       color1[7]= Colors.teal;
@@ -121,9 +134,9 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if ((text[0] != 'images/empty.png') &&
-        (text[0] == text[3]) &&
-        (text[3] == text[6])) {
+    } else if ((gameState[0] != 'images/empty.png') &&
+        (gameState[0] == gameState[3]) &&
+        (gameState[3] == gameState[6])) {
       setState(() {
        color1[0]= Colors.teal;
         color1[3]= Colors.teal;
@@ -136,9 +149,9 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if ((text[1] != 'images/empty.png') &&
-        (text[1] == text[4]) &&
-        (text[4] == text[7])) {
+    } else if ((gameState[1] != 'images/empty.png') &&
+        (gameState[1] == gameState[4]) &&
+        (gameState[4] == gameState[7])) {
       setState(() {
        color1[1]= Colors.teal;
         color1[4]= Colors.teal;
@@ -151,9 +164,9 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if ((text[2] != 'images/empty.png') &&
-        (text[2] == text[5]) &&
-        (text[5] == text[8])) {
+    } else if ((gameState[2] != 'images/empty.png') &&
+        (gameState[2] == gameState[5]) &&
+        (gameState[5] == gameState[8])) {
       setState(() {
         color1[2]= Colors.teal;
         color1[5]= Colors.teal;
@@ -166,9 +179,9 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if ((text[0] != 'images/empty.png') &&
-        (text[0] == text[4]) &&
-        (text[4] == text[8])) {
+    } else if ((gameState[0] != 'images/empty.png') &&
+        (gameState[0] == gameState[4]) &&
+        (gameState[4] == gameState[8])) {
       setState(() {
        color1[0]= Colors.teal;
         color1[4]= Colors.teal;
@@ -181,9 +194,9 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if ((text[2] != 'images/empty.png') &&
-        (text[2] == text[4]) &&
-        (text[4] == text[6])) {
+    } else if ((gameState[2] != 'images/empty.png') &&
+        (gameState[2] == gameState[4]) &&
+        (gameState[4] == gameState[6])) {
       setState(() {
         color1[2]= Colors.teal;
         color1[4]= Colors.teal;
@@ -196,7 +209,7 @@ class _HomePageState extends State<HomePage> {
           });
         });
       });
-    } else if (!text.contains('images/empty.png')) {
+    } else if (!gameState.contains('images/empty.png')) {
       setState(() {
         color1 = [Colors.red,
                 Colors.red,
@@ -218,18 +231,21 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  // to toggle b/w X and O img
   void xox(int index){
-    if(text[index]=='images/empty.png'){
+    if(gameState[index]=='images/empty.png'){
       if (i%2==0) {
-      text[index]='images/x.png';
-      print(text[index]);
+      gameState[index]='images/x.png';
+      print(gameState[index]);
     } else {
-      text[index]='images/o.png';
+      gameState[index]='images/o.png';
     }
     i=i+1;
     checkWin();
     }
   }
+
+
   @override
   Widget build(BuildContext context) {
         return Row(
@@ -260,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                               });
                           },
                           color: color1[0],
-                      child: Image.asset(text[0]),
+                      child: Image.asset(gameState[0]),
                       ),
                   ),
                   Container(
@@ -278,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[1],
-                      child: Image.asset(text[1]),
+                      child: Image.asset(gameState[1]),
                       ),
                   ),
                   Container(
@@ -296,7 +312,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[2],
-                      child: Image.asset(text[2]),
+                      child: Image.asset(gameState[2]),
                       ),
                   ),
               ],
@@ -318,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[3],
-                      child: Image.asset(text[3]),
+                      child: Image.asset(gameState[3]),
                       ),
                   ),
                   Container(
@@ -336,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[4],
-                      child: Image.asset(text[4]),
+                      child: Image.asset(gameState[4]),
                       ),
                   ),
                   Container(
@@ -354,7 +370,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[5],
-                      child: Image.asset(text[5]),
+                      child: Image.asset(gameState[5]),
                       ),
                   ),
               ],
@@ -376,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[6],
-                      child: Image.asset(text[6]),
+                      child: Image.asset(gameState[6]),
                       ),
                   ),
                   Container(
@@ -394,7 +410,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[7],
-                      child: Image.asset(text[7]),
+                      child: Image.asset(gameState[7]),
                       ),
                   ),
                   Container(
@@ -412,7 +428,7 @@ class _HomePageState extends State<HomePage> {
                           });
                       },
                       color: color1[8],
-                      child: Image.asset(text[8]),
+                      child: Image.asset(gameState[8]),
                       ),
                   ),
               ],
