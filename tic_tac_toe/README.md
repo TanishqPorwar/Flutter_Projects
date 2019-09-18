@@ -4,7 +4,8 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
 
 ## How it was built:
 
-1. Building the grid structure:
+
+1. ### Building the grid structure:
 
     I've used a nested column-row layout to build the grid. Containers are used between each row as seperators.
     
@@ -19,8 +20,9 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
     
     <img src="doc_img/Screenshot1.png" width="400">
     
-    
-2. Adding all the assets needed
+   
+   
+2. ### Adding all the assets needed
 
     Add all the images (circle, cross, etc) that are needed in the project . Open `pubspec.yaml` file inside your project folder, and           the assets:
     
@@ -30,8 +32,9 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
         - images/
       ```
       This will link all the images in your iamges folder as an asset
-      
-3. Initialize and Reset
+   
+   
+3. ### Initialize and Reset
 
     Initializing all the variables
     
@@ -44,14 +47,16 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
     iv.  `result` to store the final result of the game
     
     `reset()` resets the game, all the variables to initial values
-    
-4. Changing State to Cross or Circle upon user click
+   
+   
+4. ### Changing State to Cross or Circle upon user click
 
     To implement this functionality we have implemented a function called `xox()`. This function takes the user click as an index number    and checks whether the element of the specific index in `gameState(lists of String created earlier)` is either empty or not.
 
     To set the state to a cross or a circle alternately upon user click we need to incriment `i` value will keep on switching between       `Even` and `Odd` upon user click.
 
-5. Game Logic
+
+5. ### Game Logic
 
     Surprisingly the logic behind this game is actually very simple, and all you have to do is check consecutive indexes and that’s it.
 
