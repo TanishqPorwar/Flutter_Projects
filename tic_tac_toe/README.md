@@ -8,16 +8,16 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
 
     I've used a nested column-row layout to build the grid. Containers are used between each row as seperators.
     
-    ![structure](doc_img/structure.png)
+    ![structure](doc_img/structure.PNG)
     
     Each row contains containers, which act as both placeholders and seperators.
     The placeholders contain a flat-button which will perform a function on press
     
-    ![structure](doc_img/structure2.png)
+    ![structure](doc_img/structure2.PNG)
     
     This is how it might look:
     
-    ![screenshot1](doc_img/screenshot1.png)
+    ![screenshot1](doc_img/screenshot1.PNG)
     
 2. Adding all the assets needed
 
