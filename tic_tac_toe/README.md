@@ -17,7 +17,7 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
     
     This is how it might look:
     
-    <img src="doc_img/Screenshot1.png" width="500">
+    <img src="doc_img/Screenshot1.png" width="400">
     
     
 2. Adding all the assets needed
@@ -64,12 +64,14 @@ Similarly, you should not just check for horizontal elements but also for vertic
 `winner()` checks who won the game `X `or `O` and declares the result and the calls the `reset()` function after a delay.
 
 * # Final App
-  * Win
-  
-  <img src="doc_img/win.gif" width="500">
+  * ## Win
   
   
-  * Draw
+  <img src="doc_img/win.gif" width="400">
   
-  <img src="doc_img/draw.gif" width="500">
+  
+  * ## Draw
+  
+  
+  <img src="doc_img/draw.gif" width="400">
 
