@@ -17,7 +17,8 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
     
     This is how it might look:
     
-    ![Screenshot1](doc_img/Screenshot1.png)
+    <img src="doc_img/Screenshot1.png" width="500">
+    
     
 2. Adding all the assets needed
 
@@ -65,9 +66,10 @@ Similarly, you should not just check for horizontal elements but also for vertic
 * # Final App
   * Win
   
-  ![gif1](doc_img/win.gif)
+  <img src="doc_img/win.gif" width="500">
+  
   
   * Draw
   
-  ![gif2](doc_img/draw.gif)
+  <img src="doc_img/draw.gif" width="500">
 
