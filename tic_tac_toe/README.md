@@ -17,7 +17,7 @@ It’s a simple Tic Tac Toe application which requires two players to play the g
     
     This is how it might look:
     
-    ![Screenshot1](doc_img/screenshot1.PNG)
+    ![Screenshot1](doc_img/Screenshot1.png)
     
 2. Adding all the assets needed
 
