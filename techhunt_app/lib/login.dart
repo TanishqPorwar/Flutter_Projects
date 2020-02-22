@@ -88,6 +88,16 @@ class _LoginFormState extends State<LoginForm> {
   Widget _buildEmailTF() {
     return Container(
       decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [0.2,0.4,0.6,0.8],
+          colors: [
+            Color(0xff1A5436),
+            Color(0xff1D5B3D),
+            Color(0xff1D5B3D),
+            Color(0xff16472E),
+          ]),
         // to get a curved border
         borderRadius: BorderRadius.circular(10.0),
         // to give a shadow to the tf
@@ -101,14 +111,14 @@ class _LoginFormState extends State<LoginForm> {
       ),
       child: TextFormField(
         enabled: false,
-        style: Theme.of(context).textTheme.subhead,
         textAlign: TextAlign.left,
         keyboardType: TextInputType.emailAddress,
         decoration: TextFormFieldPrefix(
             hintText: "~/\$ admin",
-            icon: FaIcon(FontAwesomeIcons.userCog)
+            icon: FaIcon(FontAwesomeIcons.userCog,color: Color(0xff1D5B3D))
             ).copyWith(hintStyle: TextStyle(
-              color: Colors.black
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             )),
         onSaved: (String value) => _emailid = value,
       ),
@@ -119,6 +129,16 @@ class _LoginFormState extends State<LoginForm> {
   Widget _buildPasswordTF() {
     return Container(
       decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [0.2,0.4,0.6,0.8],
+          colors: [
+            Color(0xff1A5436),
+            Color(0xff1D5B3D),
+            Color(0xff1D5B3D),
+            Color(0xff16472E),
+          ]),
         // to get a curved border
         borderRadius: BorderRadius.circular(10.0),
         // to give a shadow to the tf
@@ -135,7 +155,7 @@ class _LoginFormState extends State<LoginForm> {
         style: TextStyle(fontFamily: "hack"),
         decoration: TextFormFieldPrefix(
             hintText: "Enter Password",
-            icon: FaIcon(FontAwesomeIcons.key)
+            icon: FaIcon(FontAwesomeIcons.key,color: Color(0xff1D5B3D),)
             ),
         onSaved: (String value) => _password = value,
       ),
@@ -157,7 +177,7 @@ class TextFormFieldPrefix extends InputDecoration {
             ),
             prefixIcon: Container(
               decoration: BoxDecoration(
-                  color: Color(0xff2F3857),
+                  color: Color(0xff051F1B),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     topLeft: Radius.circular(10),
