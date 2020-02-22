@@ -10,7 +10,7 @@ class BuildButton extends StatelessWidget {
     @required this.data,
     @required this.onPressed,
     this.borderRadius = 10.0,
-    this.padding = const EdgeInsets.all(0),
+    this.padding = const EdgeInsets.all(50),
   });
   @override
   Widget build(BuildContext context) {
@@ -21,15 +21,15 @@ class BuildButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      color: Color(0xff24213B),
+      color: Color(0xff051F1B),
       child: Text(
         data,
         style: TextStyle(
-          color: Colors.white,
-          letterSpacing: 1.5,
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'OpenSans',
+          color: Color(0xff1D5B3D),
+          // letterSpacing: 1.5,
+          fontSize: 25,
+          fontWeight: FontWeight.w800,
+          fontFamily: "madhack",
         ),
       ),
     );
