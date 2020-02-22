@@ -430,9 +430,20 @@ class _HomePageState extends State<HomePage> {
                       color: color1[8],
                       child: Image.asset(gameState[8]),
                       ),
-                  ),
+                  ), 
               ],
-            )
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            FloatingActionButton(
+                    child: Text("Reset"),
+                    onPressed: (){
+                      setState(() {
+                     reset(); 
+                    });
+                    },
+                  ),
           ],
         ),
       ],
