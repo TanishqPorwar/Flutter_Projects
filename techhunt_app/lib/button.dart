@@ -10,7 +10,7 @@ class BuildButton extends StatelessWidget {
     @required this.data,
     @required this.onPressed,
     this.borderRadius = 10.0,
-    this.padding = const EdgeInsets.all(50),
+    this.padding = const EdgeInsets.all(0),
   });
   @override
   Widget build(BuildContext context) {

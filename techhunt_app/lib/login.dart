@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techhunt_app/home.dart';
 import 'button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,104 +9,123 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  /// Variable to store the email id
-  String _emailid;
-
   /// Variable to store the password
-  String _password;
+  TextEditingController _password = TextEditingController();
 
   /// The key for the form
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         body: Stack(
-      children: <Widget>[
-        SingleChildScrollView(
-                  child: Column(
-            children: <Widget>[
-              Image.asset("assets/img/matrix.gif",),
-              Image.asset("assets/img/matrix.gif"),
-              Image.asset("assets/img/matrix.gif"),
-              Image.asset("assets/img/matrix.gif"),
-              Image.asset("assets/img/matrix.gif"),
-              Image.asset("assets/img/matrix.gif"),
-              Image.asset("assets/img/matrix.gif"),
-            ],
-          ),
-        ),
-        Container(
-          color: Colors.transparent,
-          height: double.infinity,
-          alignment: Alignment.center,
-          // wrapping the tfs and button in a scroll view
-          // so that we can scroll when the keyboard is open
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 40.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Welcome',
-                  style: TextStyle(
-                    fontFamily: "madhack",
-                    fontSize: 50,
-                    color: Color(0xff1D5B3D)
+          children: <Widget>[
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Image.asset(
+                    "assets/img/matrix.gif",
                   ),
-                ),
-
-                // gap
-                SizedBox(height: 80.0),
-
-                // the form
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      _buildEmailTF(),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      _buildPasswordTF()
-                    ],
-                  ),
-                ),
-
-                // gap
-                SizedBox(
-                  height: 30,
-                ),
-
-                // build forgot password and login
-                Row(
-                  mainAxisSize: MainAxisSize.min,
+                  Image.asset("assets/img/matrix.gif"),
+                  Image.asset("assets/img/matrix.gif"),
+                  Image.asset("assets/img/matrix.gif"),
+                  Image.asset("assets/img/matrix.gif"),
+                  Image.asset("assets/img/matrix.gif"),
+                  Image.asset("assets/img/matrix.gif"),
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.transparent,
+              height: double.infinity,
+              alignment: Alignment.center,
+              // wrapping the tfs and button in a scroll view
+              // so that we can scroll when the keyboard is open
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 40.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    // login button
-                    Flexible(
-                      child: BuildButton(
-                          data: "LOGIN",
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 10),
-                          onPressed: () {
-                            if (_password == "la casa de papel") {
-                              
-                            }
-                          }),
+                    Text(
+                      'Welcome',
+                      style: TextStyle(
+                          fontFamily: "madhack",
+                          fontSize: 50,
+                          color: Color(0xff1D5B3D)),
                     ),
+
+                    // gap
+                    SizedBox(height: 80.0),
+
+                    // the form
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          _buildEmailTF(),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          _buildPasswordTF()
+                        ],
+                      ),
+                    ),
+
+                    // gap
+                    SizedBox(
+                      height: 30,
+                    ),
+
+                    // build forgot password and login
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        // login button
+                        Flexible(
+                          child: BuildButton(
+                              data: "LOGIN",
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 10),
+                              onPressed: () {
+                                // print(_password.text);
+                                if (_password.text == "la casa de papel") {
+                                  print("push");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomePage()),
+                                  );
+                                } else {
+                                  final snackBar = SnackBar(
+                                    backgroundColor: Color(0xff051F1B),
+                                    content: Text('opps!! Try again.'),
+                                    action: SnackBarAction(
+                                      label: 'Ok',
+                                      textColor: Color(0xff1D5B3D),
+                                      onPressed: () {},
+                                    ),
+                                  );
+                                  _scaffoldKey.currentState
+                                      .showSnackBar(snackBar);
+                                }
+                              }),
+                        ),
+                      ],
+                    ),
+                    // gap
+                    SizedBox(
+                      height: 10,
+                    )
                   ],
                 ),
-                // gap
-                SizedBox(
-                  height: 10,
-                )
-              ],
-            ),
-          ),
-        )
-      ],
-    ));
+              ),
+            )
+          ],
+        ));
   }
 
   // building the email textfield(tf)
@@ -152,7 +172,7 @@ class _LoginFormState extends State<LoginForm> {
           color: Colors.black,
           fontWeight: FontWeight.bold,
         )),
-        onSaved: (String value) => _emailid = value,
+        // onSaved: (String value) => _emailid = value,
       ),
     );
   }
@@ -196,7 +216,8 @@ class _LoginFormState extends State<LoginForm> {
               FontAwesomeIcons.key,
               color: Color(0xff1D5B3D),
             )),
-        onSaved: (String value) => _password = value,
+        controller: _password,
+        // onSaved: (String value) => _password = value,
       ),
     );
   }
