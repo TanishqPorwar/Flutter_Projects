@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,9 +11,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool check = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -23,12 +27,27 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 50),
+        padding:
+            const EdgeInsets.only(top: 50, right: 10, left: 15, bottom: 10),
         child: Container(
           child: ListView(
             children: <Widget>[
+              RichText(
+                text: TextSpan(
+                  text: "Welcome! \n",
+                  style: TextStyle(
+                    fontSize: 40,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text:
+                            "So, you've made it this far. You'll find what you need here👇",
+                        style: TextStyle(fontSize: 25))
+                  ],
+                ),
+              ),
               Text(
-                "goo.gl/",
+                "\ngoo.gl/",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40,
@@ -41,6 +60,17 @@ class _HomePageState extends State<HomePage> {
                   length: 6,
                   onChanged: (value) {
                     print(value);
+                    if (value == "linked") {
+                      print(value);
+                      setState(() {
+                        check = true;
+                      });
+                    } else {
+                      setState(() {
+                        check = false;
+                        print(check);
+                      });
+                    }
                   },
                   backgroundColor: Color(0x01),
                   textStyle: TextStyle(
@@ -48,6 +78,38 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80),
+                child: RaisedButton(
+                    child: Text("GOTO"),
+                    onPressed: check
+                        ? () async {
+                            const url = 'https://flutter.dev';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          }
+                        : () {
+                            final snackBar = SnackBar(
+                              backgroundColor:
+                                  Theme.of(context).primaryColorDark,
+                              content: Text(
+                                'opps!! looks like the link is broken',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColorLight),
+                              ),
+                              action: SnackBarAction(
+                                label: 'Ok',
+                                textColor: Theme.of(context).accentColor,
+                                onPressed: () {},
+                              ),
+                            );
+                            _scaffoldKey.currentState.showSnackBar(snackBar);
+                          }),
+              )
             ],
           ),
         ),
@@ -69,12 +131,12 @@ showAlertDialog(BuildContext context) {
             children: <TextSpan>[
               TextSpan(
                 text: "unsaid ",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.w900),
               ),
               TextSpan(text: "says it "),
               TextSpan(
-                text: "alls.",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                text: "all.",
+                style: TextStyle(fontWeight: FontWeight.w900),
               ),
             ],
           ),
@@ -84,7 +146,10 @@ showAlertDialog(BuildContext context) {
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         actions: <Widget>[
-          FlatButton(onPressed: () {}, child: Text("ok")),
+          FlatButton(
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop('dialog'),
+              child: Text("ok")),
         ],
       );
     },

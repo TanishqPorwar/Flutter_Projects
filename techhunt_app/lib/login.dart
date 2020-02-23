@@ -102,7 +102,11 @@ class _LoginFormState extends State<LoginForm> {
                                 } else {
                                   final snackBar = SnackBar(
                                     backgroundColor: Color(0xff051F1B),
-                                    content: Text('opps!! Try again.'),
+                                    content: Text(
+                                      'opps!! Try again.',
+                                      style:
+                                          TextStyle(color: Color(0xff1D5B3D)),
+                                    ),
                                     action: SnackBarAction(
                                       label: 'Ok',
                                       textColor: Color(0xff1D5B3D),
@@ -112,6 +116,7 @@ class _LoginFormState extends State<LoginForm> {
                                   _scaffoldKey.currentState
                                       .showSnackBar(snackBar);
                                 }
+                                _password.clear();
                               }),
                         ),
                       ],
@@ -209,7 +214,7 @@ class _LoginFormState extends State<LoginForm> {
       ),
       child: TextFormField(
         obscureText: true,
-        style: TextStyle(fontFamily: "hack"),
+        style: TextStyle(fontFamily: "hack", color: Colors.black),
         decoration: TextFormFieldPrefix(
             hintText: "Enter Password",
             icon: FaIcon(
@@ -232,7 +237,7 @@ class TextFormFieldPrefix extends InputDecoration {
     double bottomLeftRadius = 10,
   }) : super(
             hintText: hintText,
-            hintStyle: TextStyle(fontFamily: "hack"),
+            hintStyle: TextStyle(fontFamily: "hack", color: Colors.black),
             prefixIcon: Container(
               decoration: BoxDecoration(
                   color: Color(0xff051F1B),
