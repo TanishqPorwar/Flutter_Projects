@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -47,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Text(
-                "\ngoo.gl/",
+                "\nbit.ly/123",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40,
@@ -57,10 +56,10 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(
                     top: 8.0, bottom: 8.0, left: 50, right: 50),
                 child: PinCodeTextField(
-                  length: 6,
+                  length: 4,
                   onChanged: (value) {
                     print(value);
-                    if (value == "linked") {
+                    if (value == "flix") {
                       print(value);
                       setState(() {
                         check = true;
@@ -85,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text("GOTO"),
                     onPressed: check
                         ? () async {
-                            const url = 'https://flutter.dev';
+                            const url = 'https://bit.ly/123linked';
                             if (await canLaunch(url)) {
                               await launch(url);
                             } else {

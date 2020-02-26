@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techhunt_app/home.dart';
+import 'package:techhunt_app/folders.dart';
 import 'button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -92,12 +92,12 @@ class _LoginFormState extends State<LoginForm> {
                                   horizontal: 50, vertical: 10),
                               onPressed: () {
                                 // print(_password.text);
-                                if (_password.text == "la casa de papel") {
-                                  print("push");
+                                if (_password.text == "money heist") {
+                                  // print("push");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HomePage()),
+                                        builder: (context) => FolderPage()),
                                   );
                                 } else {
                                   final snackBar = SnackBar(
