@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "403151967785",
+    "firebase_url": "https://flutter-game-message-app.firebaseio.com",
+    "project_id": "flutter-game-message-app",
+    "storage_bucket": "flutter-game-message-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403151967785:android:770871274d1ac95648ae38",
+        "android_client_info": {
+          "package_name": "com.example.game_message_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403151967785-md6tmi1ssb33ef599fqtqllvdiivrken.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGkN4LEXreFB5FDJjp7vHzvdspptVx23I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403151967785-md6tmi1ssb33ef599fqtqllvdiivrken.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
