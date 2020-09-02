@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:game_message_ui/src/model/topics.dart';
 
 class Forum {
@@ -15,6 +16,23 @@ class Forum {
       this.threads,
       this.subs,
       this.topics});
+
+  Forum.fromSnapshot(DocumentSnapshot snapshot) : this.fromMap(snapshot.data);
+
+  Forum.fromMap(Map<String, dynamic> map)
+      : assert(map["title"] != null),
+        assert(map["imagePath"] != null),
+        assert(map["rank"] != null),
+        assert(map["threads"] != null),
+        assert(map["subs"] != null),
+        title = map["title"],
+        imagePath = map["imagePath"],
+        rank = map["rank"],
+        threads = map["threads"],
+        subs = map["subs"],
+        topics = (map["topics"] as List)
+            .map((topic) => Topic.fromMap(topic))
+            .toList();
 }
 
 final fortniteForum = Forum(

@@ -49,68 +49,75 @@ class _DetailsPageState extends State<DetailsPage>
             secondCircleColor: secondOrangeCircleColor,
             thirdCircleColor: thirdOrangeCircleColor,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
-              IconButton(
-                padding: const EdgeInsets.only(left: 20.0),
-                icon: Icon(Icons.arrow_back, color: Colors.white),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              FutureBuilder(
-                future: playAnimation(),
-                builder: (context, snapshot) {
-                  return FadeTransition(
-                    opacity: fadeAnimation,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 100),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          LabelValueWidget(
-                            value: widget.forum.topics.length.toString(),
-                            label: "topics",
-                            labelStyle: whiteLabelTextStyle,
-                            valueStyle: whiteValueTextStyle,
-                          ),
-                          LabelValueWidget(
-                            value: widget.forum.threads,
-                            label: "threads",
-                            labelStyle: whiteLabelTextStyle,
-                            valueStyle: whiteValueTextStyle,
-                          ),
-                          LabelValueWidget(
-                            value: widget.forum.subs,
-                            label: "subs",
-                            labelStyle: whiteLabelTextStyle,
-                            valueStyle: whiteValueTextStyle,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Hero(
-                tag: widget.forum.title,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(80)),
-                  child: Image.asset(widget.forum.imagePath),
+          SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
                 ),
-              ),
-            ],
+                IconButton(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  icon: Icon(Icons.arrow_back, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                FutureBuilder(
+                  future: playAnimation(),
+                  builder: (context, snapshot) {
+                    return FadeTransition(
+                      opacity: fadeAnimation,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0, right: 100),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            LabelValueWidget(
+                              value: widget.forum.topics.length.toString(),
+                              label: "topics",
+                              labelStyle: whiteLabelTextStyle,
+                              valueStyle: whiteValueTextStyle,
+                            ),
+                            LabelValueWidget(
+                              value: widget.forum.threads,
+                              label: "threads",
+                              labelStyle: whiteLabelTextStyle,
+                              valueStyle: whiteValueTextStyle,
+                            ),
+                            LabelValueWidget(
+                              value: widget.forum.subs,
+                              label: "subs",
+                              labelStyle: whiteLabelTextStyle,
+                              valueStyle: whiteValueTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Hero(
+                  tag: widget.forum.title,
+                  child: ClipRRect(
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(80)),
+                    child: Image.asset(
+                      widget.forum.imagePath,
+                      // width: MediaQuery.of(context).size.width,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,

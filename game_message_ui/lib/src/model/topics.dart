@@ -4,6 +4,16 @@ class Topic {
   final String answerCount;
 
   Topic({this.question, this.recentAnswer, this.answerCount});
+
+  Topic.fromSnapshot(snapshot) : this.fromMap(snapshot.data);
+
+  Topic.fromMap(Map<dynamic, dynamic> map)
+      : assert(map["question"] != null),
+        assert(map["recentAnswer"] != null),
+        assert(map["answerCount"] != null),
+        question = map["question"],
+        recentAnswer = map["recentAnswer"],
+        answerCount = map["answerCount"];
 }
 
 final fortniteTopics = [

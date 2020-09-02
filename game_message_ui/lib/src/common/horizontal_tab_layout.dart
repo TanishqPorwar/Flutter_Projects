@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:game_message_ui/src/common/forum_card.dart';
 import 'package:game_message_ui/src/common/tab_text.dart';
 import 'package:game_message_ui/src/model/forum.dart';
-import 'package:game_message_ui/src/style/test_style.dart';
+import 'package:game_message_ui/src/services/firebase_service.dart';
 
 class HorizontalTabLayout extends StatefulWidget {
+  final FirebaseService firebaseService;
+
+  const HorizontalTabLayout({Key key, this.firebaseService}) : super(key: key);
   @override
   _HorizontalTabLayoutState createState() => _HorizontalTabLayoutState();
 }
@@ -82,10 +86,21 @@ class _HorizontalTabLayoutState extends State<HorizontalTabLayout>
                   opacity: _fadeAnimation,
                   child: SlideTransition(
                     position: _slideAnimation,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: getList(selectedTabIndex),
-                    ),
+                    child: StreamBuilder(
+                        stream: widget.firebaseService
+                            .getList(getTypeFromIndex(selectedTabIndex)),
+                        builder: (context, ayncsnapshot) {
+                          if (ayncsnapshot.hasError) {
+                            return Center(child: Text("Error"));
+                          }
+                          switch (ayncsnapshot.connectionState) {
+                            case ConnectionState.waiting:
+                              return CircularProgressIndicator();
+                              break;
+                            default:
+                              return _buildList(context, ayncsnapshot);
+                          }
+                        }),
                   ),
                 );
               },
@@ -96,26 +111,34 @@ class _HorizontalTabLayoutState extends State<HorizontalTabLayout>
     );
   }
 
-  List<Widget> getList(int index) {
-    return {
-      0: [
-        ForumCard(forum: fortniteForum),
-        ForumCard(forum: pubgForum),
-      ],
-      1: [
-        ForumCard(forum: pubgForum),
-        ForumCard(forum: fortniteForum),
-      ],
-      2: [
-        ForumCard(forum: fortniteForum),
-        ForumCard(forum: pubgForum),
-      ],
-    }[index];
-  }
-
   onTabTap(int i) {
     setState(() {
       selectedTabIndex = i;
     });
+  }
+
+  String getTypeFromIndex(int selectedTabIndex) {
+    switch (selectedTabIndex) {
+      case 2:
+        return "forum";
+      case 1:
+        return "streamers";
+      case 0:
+        return "media";
+    }
+  }
+
+  Widget _buildList(
+      BuildContext context, AsyncSnapshot<QuerySnapshot> ayncsnapshot) {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: ayncsnapshot.data.documents.length,
+      itemBuilder: (context, index) {
+        return ForumCard(
+          forum:
+              Forum.fromSnapshot(ayncsnapshot.data.documents.elementAt(index)),
+        );
+      },
+    );
   }
 }
